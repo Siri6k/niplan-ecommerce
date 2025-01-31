@@ -9,19 +9,19 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+
 import environ
 
 from pathlib import Path
 
 
-
 env = environ.Env(DEBUG=(bool, False))
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 environ.Env.read_env(BASE_DIR / ".env")
 
 LOCALE_PATHS = [
-    BASE_DIR / 'locale',  # Store translations in a global 'locale' folder
+    BASE_DIR / "locale",  # Store translations in a global 'locale' folder
 ]
 
 # Quick-start development settings - unsuitable for production
@@ -71,7 +71,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     # Middleware pour la gestion de la langue
-    'django.middleware.locale.LocaleMiddleware',  
+    "django.middleware.locale.LocaleMiddleware",
 ]
 
 ROOT_URLCONF = "niplan.urls"
@@ -87,24 +87,13 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                'django.template.context_processors.i18n',  # Ajoute la langue au contexte des templates
+                "django.template.context_processors.i18n",  # Ajoute la langue au contexte des templates
             ],
         },
     },
 ]
 
 WSGI_APPLICATION = "niplan.wsgi.application"
-
-
-# Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
 
 
 # Password validation
@@ -130,16 +119,15 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
 # Langue par défaut (français dans cet exemple)
-LANGUAGE_CODE = "en-us" 
+LANGUAGE_CODE = "en-us"
 
 # Liste des langues disponibles dans l'application
 LANGUAGES = [
-    ('fr', 'Français'),
-    ('en', 'English'),
-    ('sw', 'Swahili'),
-    ('ln', 'Lingala'),
-     # Ajoutez d'autres langues si nécessairecls
-
+    ("fr", "Français"),
+    ("en", "English"),
+    ("sw", "Swahili"),
+    ("ln", "Lingala"),
+    # Ajoutez d'autres langues si nécessairecls
 ]
 
 TIME_ZONE = "Africa/Lubumbashi"
@@ -152,7 +140,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/staticfiles/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_DIR = []
+MEDIA_URL = "/mediafiles/"
+MEDIA_ROOT = BASE_DIR / "mediafiles"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
